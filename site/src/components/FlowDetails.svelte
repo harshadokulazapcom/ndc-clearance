@@ -38,7 +38,7 @@
                         }).value;
                     } catch (e) {
                         // Fallback or error handling
-                        console.warn("Highlight failed", e);
+                        console.warn("Highlight failed", e); // eslint-disable-line no-console
                         highlightedXml = text
                             .replace(/&/g, "&amp;")
                             .replace(/</g, "&lt;")

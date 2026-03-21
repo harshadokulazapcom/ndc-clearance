@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { SvelteSet } from "svelte/reactivity";
     import type { LoadedSchemaFile } from "../utils/types";
 
     let {
@@ -20,7 +21,7 @@
     let copyLabel = $state("Copy XML");
 
     // Folding state
-    let collapsedLines = $state(new Set<number>());
+    let collapsedLines = new SvelteSet<number>();
 
     // Derived state for rendered lines
     let renderedLines = $derived.by(() => {
@@ -91,35 +92,16 @@
     });
 
     function toggleFold(lineNumber: number) {
-        const newSet = new Set(collapsedLines);
-        if (newSet.has(lineNumber)) {
-            newSet.delete(lineNumber);
+        if (collapsedLines.has(lineNumber)) {
+            collapsedLines.delete(lineNumber);
         } else {
-            newSet.add(lineNumber);
+            collapsedLines.add(lineNumber);
         }
-        collapsedLines = newSet;
     }
 
-    function isHidden(
-        lineNumber: number,
-        lines: typeof renderedLines,
-    ): boolean {
-        // A line is hidden if any of its parents are collapsed
-        // We need to find the "parent" of this line.
-        // A parent is the closest preceding line with smaller indentation.
-
-        // Optimization: checking every line's parents on render is O(N^2) worst case.
-        // Better: iterate linearly when rendering?
-        // But here we are inside the #each loop logic or derived?
-
-        // Actually, the simplest way for the template is:
-        // if a line is collapsed, hide all subsequent lines until indent <= collapsed indent.
-        return false; // Handled in the template logic for efficiency?
-    }
-
-    // We need a derived "visible" line set or just logic in the template?
-    // Doing O(N) pass to determine visibility is best.
+    // O(N) pass to determine visibility
     let visibleLines = $derived.by(() => {
+        // eslint-disable-next-line svelte/prefer-svelte-reactivity -- local computation, not reactive state
         const visible = new Set<number>();
         let hideUntilDepth = Infinity;
 
@@ -248,6 +230,7 @@
 
                                 <!-- Code Content -->
                                 <div class="whitespace-pre">
+                                    <!-- eslint-disable-next-line svelte/no-at-html-tags -- highlighted code output -->
                                     {@html line.html}{#if collapsedLines.has(line.lineNumber)}<span
                                             class="select-none opacity-50 text-xs ml-2"
                                             >...</span

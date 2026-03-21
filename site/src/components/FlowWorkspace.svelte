@@ -11,6 +11,7 @@
         catalog: ExampleCatalog;
     } = $props();
 
+    // eslint-disable-next-line svelte/prefer-writable-derived -- also set by user click
     let selectedStepId = $state<string | null>(null);
 
     // Reset selection when flow changes

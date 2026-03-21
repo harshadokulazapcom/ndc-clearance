@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.3.0"
-    kotlin("plugin.serialization") version "2.3.0"
+    kotlin("jvm") version "2.3.20"
+    kotlin("plugin.serialization") version "2.3.20"
     application
 }
 
@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
-    implementation("org.jsoup:jsoup:1.18.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("org.jsoup:jsoup:1.21.1")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }

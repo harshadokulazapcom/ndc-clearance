@@ -29,6 +29,7 @@ const FLOWS_PATH = path.join(
 
 export function getFlows(): FlowRecord[] {
     if (!fs.existsSync(FLOWS_PATH)) {
+        // eslint-disable-next-line no-console
         console.warn(`Flows file not found at ${FLOWS_PATH}`);
         // Fallback to try finding it relative to site/ if running from site root
         const fallbackPath = path.resolve("..", "ndc_content/flows/flows.json");

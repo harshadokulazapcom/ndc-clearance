@@ -42,7 +42,7 @@ describe("XmlSourceView", () => {
         });
 
         expect(
-            container.querySelector("code.language-xml"),
+            container.querySelector("span.hljs-tag"),
         ).toBeInTheDocument();
     });
 

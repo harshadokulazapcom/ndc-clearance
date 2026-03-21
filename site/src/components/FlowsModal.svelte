@@ -78,7 +78,7 @@
                                         >
                                             {flow.steps.length} steps
                                         </span>
-                                        {#each relevantSteps as step}
+                                        {#each relevantSteps as step (step.step_id)}
                                             <span
                                                 class="badge badge-sm badge-secondary badge-outline"
                                             >

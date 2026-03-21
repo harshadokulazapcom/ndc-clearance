@@ -25,15 +25,6 @@ const openCodeConfig = `{
   }
 }`;
 
-const cursorConfig = `{
-  "mcpServers": {
-    "ndc-validator": {
-      "type": "sse",
-      "url": "${MCP_URL}"
-    }
-  }
-}`;
-
 const tools = [
     {
         name: "validate_ndc_xml",
@@ -166,7 +157,7 @@ const tools = [
                 <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <h3 class="font-bold text-lg mb-4">Cursor (Agent Mode)</h3>
                      <p class="mb-4">
-                        Add the following to your Cursor MCP settings (Settings > General > MCP Servers > Add new MCP server).
+                        Add the following to your Cursor MCP settings (Settings &gt; General &gt; MCP Servers &gt; Add new MCP server).
                     </p>
                     <div class="mockup-code">
                          <pre data-prefix="1"><code>Type: SSE</code></pre>

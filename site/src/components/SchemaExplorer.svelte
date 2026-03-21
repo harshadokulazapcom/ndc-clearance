@@ -267,7 +267,8 @@
     let isSearching = $state(false);
     let targetPath = $state("");
 
-    // Memoization for resolved elements
+    // Memoization for resolved elements (not reactive, used as a plain cache)
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity
     const elementCache = new Map<string, Element[]>();
 
     async function performSearch() {
@@ -422,11 +423,6 @@
         treeAction = "collapse";
         treeActionVersion++;
         query = "";
-    }
-
-    function getRelatedFlows(messageName: string | null) {
-        if (!messageName) return [];
-        return [];
     }
 
     function handleHashChange() {
