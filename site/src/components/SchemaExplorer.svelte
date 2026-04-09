@@ -107,7 +107,7 @@
                     );
                 const text = await res.text();
                 const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(text, "application/xml");
+                const xmlDoc = parser.parseFromString(text.trim(), "application/xml");
                 if (xmlDoc.querySelector("parsererror")) {
                     throw new Error(`XML Parse Error in ${file.name}`);
                 }
