@@ -7,6 +7,9 @@ const versions = getVersions();
 const latestVersion = versions[0];
 const latestMessages = latestVersion ? getMessages(latestVersion) : [];
 const firstMessage = latestMessages[0] || "IATA_AirShoppingRQ";
+
+// Helper function to generate absolute URLs that preserve origin and port
+const getAbsoluteUrl = (path: string) => new URL(path, Astro.url).toString();
 ---
 
 <Layout title="IATA NDC Schema Browser - All Versions | NDC Clearance">
@@ -35,7 +38,7 @@ const firstMessage = latestMessages[0] || "IATA_AirShoppingRQ";
                         validation backend.
                     </p>
 
-                    <a href="/mcp" class="btn btn-neutral w-full">
+                    <a href={getAbsoluteUrl("/mcp")} class="btn btn-neutral w-full">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-5 w-5 mr-2"
@@ -78,7 +81,7 @@ const firstMessage = latestMessages[0] || "IATA_AirShoppingRQ";
                     <a href="#versions" class="btn btn-ghost"
                         >View All Versions</a
                     >
-                    <a href="/diff" class="btn btn-outline"
+                    <a href={getAbsoluteUrl("/diff")} class="btn btn-outline"
                         >Compare Versions Tool</a
                     >
                 </div>
