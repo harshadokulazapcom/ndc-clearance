@@ -10,16 +10,12 @@ const {
 } = Astro.props;
 import "../styles/global.css";
 import PostHog from "../components/posthog.astro";
-
-// Helper function to generate absolute URLs that preserve origin and port
-const getAbsoluteUrl = (path: string) => new URL(path, Astro.url).toString();
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <base href="/" />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -177,7 +173,7 @@ const getAbsoluteUrl = (path: string) => new URL(path, Astro.url).toString();
                         <ul class="menu menu-md bg-base-100 w-full p-2 gap-1">
                             <li>
                                 <a
-                                    href={getAbsoluteUrl("/")}
+                                    href="/"
                                     class={Astro.url.pathname === "/" ||
                                     Astro.url.pathname.match(/^\/\d+\.\d+/)
                                         ? "active"
@@ -202,7 +198,7 @@ const getAbsoluteUrl = (path: string) => new URL(path, Astro.url).toString();
                             </li>
                             <li>
                                 <a
-                                    href={getAbsoluteUrl("/diff")}
+                                    href="/diff"
                                     class={Astro.url.pathname.startsWith("/diff")
                                         ? "active"
                                         : ""}
